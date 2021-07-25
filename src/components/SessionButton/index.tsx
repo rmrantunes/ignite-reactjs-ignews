@@ -1,21 +1,21 @@
 import { signIn, signOut, useSession } from "next-auth/client";
 
-import styles from "./SignInButton.module.scss";
+import styles from "./SessionButton.module.scss";
 import { FaGithub } from "react-icons/fa";
 
-type SignInButtonProps = {
+type SessionButtonProps = {
   isLoggedIn: boolean;
   username?: string;
   onSignIn: () => void;
   onSignOut: () => void;
 };
 
-export function SignInButton(props: SignInButtonProps) {
+function SessionButton(props: SessionButtonProps) {
   const handleSignAction = props.isLoggedIn ? props.onSignOut : props.onSignIn;
   const githubIconFillColor = props.isLoggedIn ? "#04D361" : "#EBA417";
 
   return (
-    <button className={styles.signInButton} onClick={handleSignAction}>
+    <button className={styles.sessionButton} onClick={handleSignAction}>
       <FaGithub fill={githubIconFillColor} />
       <span>
         {props.isLoggedIn
@@ -26,11 +26,11 @@ export function SignInButton(props: SignInButtonProps) {
   );
 }
 
-export function SignInButtonLogicBoundary() {
+export function SessionButtonLogicBoundary() {
   const [session] = useSession();
 
   return (
-    <SignInButton
+    <SessionButton
       isLoggedIn={Boolean(session)}
       onSignIn={() => signIn("github")}
       onSignOut={signOut}

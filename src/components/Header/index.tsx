@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { SignInButtonLogicBoundary } from "components/SignInButton";
+import { SessionButtonLogicBoundary } from "components/SessionButton";
 
 import logoImg from "assets/images/logo.svg";
 import styles from "./Header.module.scss";
@@ -13,7 +13,7 @@ export function Header() {
           <a href="#">Home</a>
           <a href="#">Posts</a>
         </nav>
-        <SignInButtonLogicBoundary />
+        <SessionButtonLogicBoundary />
       </div>
     </header>
   );

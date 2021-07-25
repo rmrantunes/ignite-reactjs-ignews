@@ -5,7 +5,7 @@ import "../styles/globals.scss";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <NextAuthPovider>
+    <NextAuthPovider session={pageProps.session}>
       <Header />
       <Component {...pageProps} />
     </NextAuthPovider>

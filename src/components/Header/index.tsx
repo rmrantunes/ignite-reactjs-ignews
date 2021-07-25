@@ -1,6 +1,7 @@
 import Image from "next/image";
-import logoImg from "assets/images/logo.svg";
+import { SignInButton } from "components/SignInButton";
 
+import logoImg from "assets/images/logo.svg";
 import styles from "./Header.module.scss";
 
 export function Header() {
@@ -12,6 +13,7 @@ export function Header() {
           <a href="#">Home</a>
           <a href="#">Posts</a>
         </nav>
+        <SignInButton />
       </div>
     </header>
   );

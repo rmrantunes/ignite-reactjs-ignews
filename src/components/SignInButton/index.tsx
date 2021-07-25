@@ -5,7 +5,7 @@ export function SignInButton() {
   return (
     <button className={styles.signInButton}>
       <FaGithub fill="#EBA417" />
-      <span>Sing in with GitHub</span>
+      <span>Sign in with GitHub</span>
     </button>
   );
 }

@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
 import { SessionButtonLogicBoundary } from "components/SessionButton";
+import { ActiveLink } from "components/ActiveLink";
 
 import logoImg from "assets/images/logo.svg";
 import styles from "./Header.module.scss";
@@ -11,12 +11,12 @@ export function Header() {
       <div className={styles.container}>
         <Image src={logoImg} alt="ignews" />
         <nav>
-          <Link href="/">
+          <ActiveLink href="/" activeClassName={styles.active}>
             <a href="#">Home</a>
-          </Link>
-          <Link href="/posts">
+          </ActiveLink>
+          <ActiveLink href="/posts" activeClassName={styles.active}>
             <a>Posts</a>
-          </Link>
+          </ActiveLink>
         </nav>
         <SessionButtonLogicBoundary />
       </div>

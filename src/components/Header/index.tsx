@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { SessionButtonLogicBoundary } from "components/SessionButton";
 
 import logoImg from "assets/images/logo.svg";
@@ -10,8 +11,12 @@ export function Header() {
       <div className={styles.container}>
         <Image src={logoImg} alt="ignews" />
         <nav>
-          <a href="#">Home</a>
-          <a href="#">Posts</a>
+          <Link href="/">
+            <a href="#">Home</a>
+          </Link>
+          <Link href="/posts">
+            <a>Posts</a>
+          </Link>
         </nav>
         <SessionButtonLogicBoundary />
       </div>

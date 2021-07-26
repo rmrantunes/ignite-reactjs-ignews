@@ -14,7 +14,7 @@ export function Header() {
           <ActiveLink href="/" activeClassName={styles.active}>
             <a href="#">Home</a>
           </ActiveLink>
-          <ActiveLink href="/posts" activeClassName={styles.active}>
+          <ActiveLink href="/posts" activeClassName={styles.active} prefetch>
             <a>Posts</a>
           </ActiveLink>
         </nav>

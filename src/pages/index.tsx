@@ -1,7 +1,7 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { SubscribeButton } from "components/SubscribeButton";
+import { SubscribeButtonLogicBoundary } from "components/SubscribeButton";
 
 import { stripe } from "services/stripe";
 
@@ -34,7 +34,7 @@ export default function Home(props: HomePageProps) {
             <span>for {props.product.priceText}/month</span>
           </p>
 
-          <SubscribeButton />
+          <SubscribeButtonLogicBoundary />
         </div>
         <Image src={avatarImg} alt="Girl coding and chilling" />
       </main>

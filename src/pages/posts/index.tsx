@@ -26,11 +26,13 @@ export default function Posts(props: PostsPageProps) {
 
       <main className={styles.container}>
         <div className={styles.posts}>
-          <a>
-            <time>22 de julho de 2021</time>
-            <strong>Post title</strong>
-            <p>Post minified content</p>
-          </a>
+          {props.posts.map((post) => (
+            <a key={post.slug}>
+              <time>{post.updatedAt}</time>
+              <strong>{post.title}</strong>
+              <p>{post.excerpt}</p>
+            </a>
+          ))}
         </div>
       </main>
     </>

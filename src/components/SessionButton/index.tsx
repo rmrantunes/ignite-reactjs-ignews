@@ -1,39 +1,40 @@
-import { signIn, signOut, useSession } from "next-auth/client";
+import { signIn, signOut, useSession } from 'next-auth/client'
 
-import styles from "./SessionButton.module.scss";
-import { FaGithub } from "react-icons/fa";
+import styles from './SessionButton.module.scss'
+import { FaGithub } from 'react-icons/fa'
 
 type SessionButtonProps = {
-  isLoggedIn: boolean;
-  username?: string;
-  onSignIn: () => void;
-  onSignOut: () => void;
-};
+  isLoggedIn: boolean
+  username?: string
+  onSignIn: () => void
+  onSignOut: () => void
+}
 
-function SessionButton(props: SessionButtonProps) {
-  const handleSignAction = props.isLoggedIn ? props.onSignOut : props.onSignIn;
-  const githubIconFillColor = props.isLoggedIn ? "#04D361" : "#EBA417";
+export function SessionButton(props: SessionButtonProps) {
+  const handleSignAction = props.isLoggedIn ? props.onSignOut : props.onSignIn
+  const githubIconFillColor = props.isLoggedIn ? '#04D361' : '#EBA417'
 
   return (
     <button className={styles.sessionButton} onClick={handleSignAction}>
-      <FaGithub fill={githubIconFillColor} />
+      <FaGithub fill={githubIconFillColor} aria-label="GitHub icon" />
       <span>
         {props.isLoggedIn
           ? props.username ?? "You're logged in"
-          : "Sign in with GitHub"}
+          : 'Sign in with GitHub'}
       </span>
     </button>
-  );
+  )
 }
 
 export function SessionButtonLogicBoundary() {
-  const [session] = useSession();
+  const [session] = useSession()
 
   return (
     <SessionButton
       isLoggedIn={Boolean(session)}
-      onSignIn={() => signIn("github")}
+      onSignIn={() => signIn('github')}
       onSignOut={signOut}
+      username={session?.user?.name}
     />
-  );
+  )
 }

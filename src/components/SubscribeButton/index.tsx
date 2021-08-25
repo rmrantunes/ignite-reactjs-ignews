@@ -1,14 +1,14 @@
-import { signIn, useSession } from "next-auth/client";
-import { useRouter } from "next/dist/client/router";
+import { signIn, useSession } from 'next-auth/client'
+import { useRouter } from 'next/dist/client/router'
 
-import { makeAPIRoutesRequest } from "services/axios";
-import { getStripeJs } from "services/stripe-js";
+import { makeAPIRoutesRequest } from 'services/axios'
+import { getStripeJs } from 'services/stripe-js'
 
-import styles from "./SubscribeButton.module.scss";
+import styles from './SubscribeButton.module.scss'
 
 type SubscribeButtonProps = {
-  onSubscribe: () => Promise<void>;
-};
+  onSubscribe: () => Promise<void>
+}
 
 export function SubscribeButton(props: SubscribeButtonProps) {
   return (
@@ -19,36 +19,36 @@ export function SubscribeButton(props: SubscribeButtonProps) {
     >
       Subscribe now
     </button>
-  );
+  )
 }
 
 export function SubscribeButtonLogicBoundary() {
-  const [session] = useSession();
+  const [session] = useSession()
 
-  const router = useRouter();
+  const router = useRouter()
 
   async function handleSubscribe() {
     if (!session) {
-      signIn("github");
-      return;
+      signIn('github')
+      return
     }
 
     if (session.activeSubscription) {
-      router.push("/posts");
-      return;
+      router.push('/posts')
+      return
     }
 
     try {
-      const { data } = await makeAPIRoutesRequest.post("/subscribe");
+      const { data } = await makeAPIRoutesRequest.post('/subscribe')
 
-      const stripeJs = await getStripeJs();
+      const stripeJs = await getStripeJs()
       await stripeJs.redirectToCheckout({
-        sessionId: data.sessionId,
-      });
+        sessionId: data.sessionId
+      })
     } catch (error) {
-      alert(error.message);
+      alert(error.message)
     }
   }
 
-  return <SubscribeButton onSubscribe={handleSubscribe} />;
+  return <SubscribeButton onSubscribe={handleSubscribe} />
 }

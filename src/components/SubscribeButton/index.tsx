@@ -1,5 +1,5 @@
 import { signIn, useSession } from 'next-auth/client'
-import { useRouter } from 'next/dist/client/router'
+import { useRouter } from 'next/router'
 
 import { makeAPIRoutesRequest } from 'services/axios'
 import { getStripeJs } from 'services/stripe-js'

@@ -1,19 +1,19 @@
-import Head from "next/head";
-import { getSession } from "next-auth/client";
-import { getPrismicClient } from "services/prismic";
+import Head from 'next/head'
+import { getSession } from 'next-auth/client'
+import { getPrismicClient } from 'services/prismic'
 
-import styles from "styles/Post.module.scss";
-import { RichText } from "prismic-dom";
+import styles from 'styles/Post.module.scss'
+import { RichText } from 'prismic-dom'
 
 type Post = {
-  title: string;
-  content: string;
-  updatedAt: string;
-};
+  title: string
+  content: string
+  updatedAt: string
+}
 
 type PostPageProps = {
-  post: Post;
-};
+  post: Post
+}
 
 export default function Post(props: PostPageProps) {
   return (
@@ -33,41 +33,41 @@ export default function Post(props: PostPageProps) {
         </article>
       </main>
     </>
-  );
+  )
 }
 
 export const getServerSideProps = async ({ req, params }) => {
-  const session = await getSession(req);
-  const { slug } = params;
+  const session = await getSession(req)
+  const { slug } = params
 
   if (!session?.activeSubscription) {
     return {
       redirect: {
-        destination: "/",
+        destination: '/',
         // See later what this means:
-        permanent: false,
-      },
-    };
+        permanent: false
+      }
+    }
   }
 
-  const prismic = getPrismicClient(req);
-  const response = await prismic.getByUID("publication", String(slug), {});
+  const prismic = getPrismicClient(req)
+  const response = await prismic.getByUID('publication', String(slug), {})
 
   const post = {
     slug,
     title: RichText.asText(response.data.title),
     content: RichText.asHtml(response.data.content),
     updatedAt: new Date(response.last_publication_date).toLocaleDateString(
-      "pt-BR",
+      'pt-BR',
       {
-        day: "2-digit",
-        month: "long",
-        year: "numeric",
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric'
       }
-    ),
-  };
+    )
+  }
 
   return {
-    post,
-  };
-};
+    props: { post }
+  }
+}

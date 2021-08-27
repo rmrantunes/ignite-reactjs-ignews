@@ -1,7 +1,7 @@
-import { Provider as NextAuthPovider } from "next-auth/client";
-import { Header } from "../components/Header";
+import { Provider as NextAuthPovider } from 'next-auth/client'
+import { Header } from '../components/Header'
 
-import "../styles/globals.scss";
+import '../styles/globals.scss'
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }) {
       <Header />
       <Component {...pageProps} />
     </NextAuthPovider>
-  );
+  )
 }
 
-export default MyApp;
+export default MyApp

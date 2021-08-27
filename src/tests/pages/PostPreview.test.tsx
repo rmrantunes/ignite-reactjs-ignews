@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import { useSession, getSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import { mocked } from 'ts-jest/utils'
